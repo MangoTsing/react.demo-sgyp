@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>react-demo2(关于表单不可控组件)</title>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="sgyp"></div>
+    <script type="text/babel">
+    var SgypForm=React.createClass({
+        buttonHandler: function(event){
+            var helloTo = ReactDOM.findDOMNode(this.refs.helloTo).value;
+            alert(helloTo);
+        },
+        render: function(){
+            return <div><input
+                ref="helloTo"
+                type="text"
+                defaultValue="sgypForm" />
+            <br />
+            <button type="button" onClick={this.buttonHandler}>alert</button>
+            </div>
+        }
+    });
+    ReactDOM.render(
+      <SgypForm />,document.getElementById('sgyp')
+    )
+//完成本页面的感悟
+//1.组件首字母一定要大写
+//2.组件的render内部需要闭合标签
+//3.单独的标签需要用/去进行闭合，如<br /><hr />
+    </script>
+</body>
+</html>
