@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>(关于表单可控组件)</title>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="sgyp"></div>
+    <script type="text/jsx">
+        var SgypForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    helloTo: "MangoTsing__sgyp"
+                };
+            },
+            sgypChange: function (event) {
+                this.setState({
+                    helloTo: event.target.value
+                });
+            },
+            sgypHandler: function (event) {
+                event.preventDefault();
+                alert(this.state.helloTo);
+            },
+            render: function () {
+                return <form onSubmit={this.sgypHandler}>
+                    <input type="text" value={this.state.helloTo} onChange={this.sgypChange} />
+                    <br />
+                    <button type="submit">Speak</button>
+                </form>;
+                //取消默认事件防止刷新event.preventDefault();
+                }
+            });
+        ReactDOM.render(<SgypForm/>, document.getElementById("sgyp"));
+    </script>
+</body>
+</html>

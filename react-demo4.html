@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>表单提交（内容） demo4</title>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="sgyp"></div>
+    <script type="text/jsx">
+    //event.target.value 获取this.state的内容
+        var SgypForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    username: "",
+                    gender: "男",
+                    checked: true
+                };
+            },
+            handleUsernameChange: function (event) {
+                this.setState({
+                    username: event.target.value
+                });
+            },
+            handleGenderChange: function (event) {
+                this.setState({
+                    gender: event.target.value
+                });
+            },
+            handleCheckboxChange: function (event) {
+                this.setState({
+                    checked: event.target.checked
+                });
+            },
+            submitHandler: function (event) {
+                event.preventDefault();
+                console.log(this.state);
+            },
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                    <label htmlFor="username">请输入用户名:</label>
+                    <input id="username" type="text" value={this.state.username} onChange={this.handleUsernameChange} />
+                    <br />
+                    <select value={this.state.gender} onChange={this.handleGenderChange}>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                    <br />
+                    <label htmlFor="checkbox">同意用户协议</label>
+                    <input id="checkbox" type="checkbox" value="agree" checked={this.state.checked} onChange={this.handleCheckboxChange} />
+                    <button type="submit">注册</button>
+                </form>;
+                }
+            });
+        ReactDOM.render(<SgypForm/>, document.getElementById("sgyp"));
+    </script>
+</body>
+</html>
