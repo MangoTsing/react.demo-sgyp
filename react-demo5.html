@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>bind的使用，更改指向</title>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+</head>
+<body>
+    <div id="sgyp"></div>
+    <script type="text/jsx">
+        var SgypForm = React.createClass({
+            getInitialState: function () {
+                return {
+                    username: "",
+                    gender: "man",
+                    checked: true
+                };
+            },
+            handleChange: function (name, event) {
+                var newState = {};
+                newState[name] = name == "checked" ? event.target.checked : event.target.value;
+                this.setState(newState);
+            },//传递一个参数name
+            submitHandler: function (event) {
+                event.preventDefault();
+                console.log(this.state);
+            },//重点在这里，bind(this,"username")更改原本指向
+            //this.handleChange.bind（）的使用
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                    <label htmlFor="username">请输入用户名:</label>
+                    <input id="" type="text" value={this.state.username} onChange={this.handleChange.bind(this, "username")} />
+
+                    <br />
+                    <select value={this.state.gender} onChange={this.handleChange.bind(this, "gender")}>
+                        <option value="男">男</option>
+                        <option value="女">女</option>
+                    </select>
+                    <br />
+                    <label htmlFor="checkbox">同意用户协议</label>
+                    <input id="" type="checkbox" value="agree" checked={this.state.checked} onChange={this.handleChange.bind(this, "checked")} />
+                    <button type="submit">注册</button>
+                </form>;
+                }
+            });
+        ReactDOM.render(<SgypForm/>, document.getElementById("sgyp"));
+    </script>
+</body>
+</html>
