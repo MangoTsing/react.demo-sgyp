@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>this.props(不可控自定义组件)</title>  <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
+      <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
+      <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+  </head>
+  <body>
+    <div id="sgyp">
+
+    </div>
+    <script type="text/jsx">
+        var SgypForm= React.createClass({
+            getInitialState:function(){
+              return {
+                value:this.props.defaultValue
+              };
+            },
+            handleChange:function(event){
+              if (this.props.onChange) {
+                  this.props.onChange(event);
+              }//三目运算符报错，没有else
+                this.setState({
+                    value:event.target.value
+                });
+            },
+            render:function(){
+                var children = [];
+                var value = this.props.value || this.state.value;
+                React.Children.forEach(this.props.children,function(child,i){
+                  var label=<label key={i}>
+                            <input type="radio" name={this.props.name} value={child.props.value} checked={child.props.value===value} onChange={this.handleChange} />
+                        sgyp:  {child.props.children}
+                            <br />
+                            </label>;
+                            children.push(label);
+                }.bind(this)
+              );
+              return <span>{children}</span>;
+            }
+        });
+
+        var MyForm = React.createClass({
+            submitHandler: function (event) {
+                event.preventDefault();
+                alert(this.refs.sgyp.state.value+this.refs.sgyp.props.name);//refs.sgyp
+                //想要获取文本元素
+            },
+            render: function () {
+                return <form onSubmit={this.submitHandler}>
+                <SgypForm ref="sgyp" name="my_radio" defaultValue="C">
+                    <option value="A">One</option>
+                    <option value="B">two</option>
+                    <option value="C">three</option>
+                </SgypForm>
+                <button type="submit">Alert</button>
+                </form>;
+            }
+        });
+        ReactDOM.render(<MyForm/>, document.getElementById("sgyp"));
+    </script>
+  </body>
+</html>
