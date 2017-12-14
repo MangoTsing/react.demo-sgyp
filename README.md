@@ -13,4 +13,5 @@ react练习
 		7.在表单组件中使用另一组件，以及this.props的应用
 		8.可控的自定义组件
 		9.生命周期componentDidMount(渲染成功时执行)
+		10.所有生命周期在 Content 组件中
 ##
