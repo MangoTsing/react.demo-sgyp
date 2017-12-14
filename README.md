@@ -12,4 +12,5 @@ react练习
 		6.表单方法的event.target.name使用
 		7.在表单组件中使用另一组件，以及this.props的应用
 		8.可控的自定义组件
+		9.生命周期componentDidMount(渲染成功时执行)
 ##
