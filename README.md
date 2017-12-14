@@ -11,4 +11,5 @@ react练习
 		5.表单的方法的bind()使用
 		6.表单方法的event.target.name使用
 		7.在表单组件中使用另一组件，以及this.props的应用
+		8.可控的自定义组件
 ##

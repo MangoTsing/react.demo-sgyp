@@ -42,10 +42,13 @@
         });
 
         var MyForm = React.createClass({
+
             submitHandler: function (event) {
                 event.preventDefault();
+                
                 alert(this.refs.sgyp.state.value+this.refs.sgyp.props.name);//refs.sgyp
                 //想要获取文本元素
+                alert(text);
             },
             render: function () {
                 return <form onSubmit={this.submitHandler}>
