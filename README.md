@@ -14,4 +14,9 @@ react练习
 		8.可控的自定义组件
 		9.生命周期componentDidMount(渲染成功时执行)
 		10.所有生命周期在 Content 组件中
+<p>
+##
+##
+第二部分react-app
+		1.react-app
 ##
