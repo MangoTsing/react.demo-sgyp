@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react.min.js"></script>
+    <script src="https://cdn.bootcss.com/react/15.5.4/react-dom.min.js"></script>
+    <script src="https://cdn.bootcss.com/babel-standalone/6.22.1/babel.min.js"></script>
+    <title>另一种写法</title>
+</head>
+  <body>
+    <div id="sgyp"></div>
+    <script type="text/babel">
+      var SgypForm = React.createClass({
+        getInitialState: function() {
+          return {value: 'Hello!'};
+        },
+        handleChange: function(event) {
+          this.setState({value: event.target.value});
+        },
+        render: function () {
+          var value = this.state.value;
+          return (
+            <div>
+              <input type="text" value={value} onChange={this.handleChange} />
+              <p>{value}</p>
+            </div>
+          );
+        }
+      });
+      // var Main = React.createClass({
+      //   getInitialState:function(){
+      //     return {
+      //       value: 0
+      //     };
+      //   },
+      //   handleChange:function(event){
+      //     this.setState({value:this.state.value+1})
+      //   },
+      //   render:function(){
+      //       return(
+      //         <div><button onClick={this.handleChange}>点击加1</button>
+      //         <p>{value}</p>
+      //         </div>
+      //       )
+      //   }
+      // });
+
+      ReactDOM.render(<SgypForm/>, document.getElementById('sgyp'));
+    </script>
+  </body>
+</html>
